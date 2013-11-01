@@ -1,0 +1,4 @@
+pelican-sora
+============
+
+pelican theme
