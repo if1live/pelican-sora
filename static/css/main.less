@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6, div, p, a, span, li, time {
 
 /* LAYOUT CSS */
 #layout {
-  padding-left: 25%; /* "left col (nav + list)" width */
+  padding-left: @sidebar-width; /* "left col (nav + list)" width */
   position: relative;
 }
 
@@ -43,8 +43,8 @@ h1, h2, h3, h4, h5, h6, div, p, a, span, li, time {
   position: fixed;
   top: 0;
   bottom: 0;
-  width: 25%;
-  margin-left: -25%;
+  width: @sidebar-width;
+  margin-left: -@sidebar-width;
   background: rgb(24, 33, 61);
   color: #fff;
 }
@@ -93,6 +93,7 @@ h1, h2, h3, h4, h5, h6, div, p, a, span, li, time {
   }
   input[type=text] {
     width: 100%;
+    max-width: 150px;
   }
 }
 
@@ -104,7 +105,7 @@ h1, h2, h3, h4, h5, h6, div, p, a, span, li, time {
 }
 
 .content {
-  padding: 2em 3em 0;
+  padding: 2em 2em 0;
 }
 
 .recent-posts {
