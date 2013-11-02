@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>  
+{% block head %}
+<title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+{% if article and article.author %}
+<meta name="author" content="{{ article.author }}" />
+<meta name="copyright" content="{{ article.author }}" />
+{% elif page and page.author %}
+<meta name="author" content="{{ page.author }}" />
+<meta name="copyright" content="{{ page.author }}" />
+{% else %}
+<meta name="author" content="{{ AUTHOR }}" />
+<meta name="copyright" content="{{ AUTHOR }}" />
+{% endif %}
+
+{% if SITE_DESCRIPTION %}
+<meta name="description" content="{% block head_description %}{{ SITE_DESCRIPTION }}{% endblock head_description %}" />
+{% endif %}
+
+
+{% block meta_tags_in_head %}
+{% endblock meta_tags_in_head %}
+
+{% endblock head %}
+
+<link rel="shortcut icon" href="{{ SITEURL }}/theme/images/favicon.ico" type="image/x-icon" />
+<link rel="apple-touch-icon" href="{{ SITEURL }}/theme/images/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="57x57" href="{{ SITEURL }}/theme/images/apple-touch-icon-57x57.png" />
+<link rel="apple-touch-icon" sizes="72x72" href="{{ SITEURL }}/theme/images/apple-touch-icon-72x72.png" />
+<link rel="apple-touch-icon" sizes="114x114" href="{{ SITEURL }}/theme/images/apple-touch-icon-114x114.png" />
+<link rel="apple-touch-icon" sizes="144x144" href="{{ SITEURL }}/theme/images/apple-touch-icon-144x144.png" />
+<link rel="icon" href="{{ SITEURL }}/theme/images/apple-touch-icon-144x144.png" />
+
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pure-min.css">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/blog.css">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/code.css">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+
+{% include 'feeds.html' %}
+{% include 'analytics.html' %}
+</head>
+
+<body>
+<div class="pure-g-r" id="layout">
+<div class="sidebar pure-u">
+	<header class="header">
+		<hgroup>	
+			<h1 class="brand-title">
+				<a href="{{ SITEURL }}">{{ SITENAME }}</a>
+			</h1>
+			<h2 class="brand-tagline">{{ SITESUBTITLE }}</h2>
+		</hgroup>
+
+		<nav class="nav">
+			<ul class="nav-list">
+				<li {% if page_name == "categories" %} class="active nav-item" {% else %} class="nav-item" {% endif %}>
+					<a href="{{ SITEURL }}/categories.html" class="pure-button">Categories</a>
+				</li>
+				<li {% if page_name == "tags" %} class="active nav-item" {% else %} class="nav-item" {% endif %}>
+					<a href="{{ SITEURL }}/tags.html" class="pure-button">Tags</a>
+				</li>
+				<li {% if page_name == "archives" %} class="active nav-item" {% else %} class="nav-item" {% endif %}>
+					<a href="{{ SITEURL }}/archives.html" class="pure-button">Archives</a>
+				</li>
+				
+				{% if DISPLAY_PAGES_ON_MENU %}
+					{% for p in PAGES %}
+						<li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
+					{% endfor %}
+				{% endif %}
+				{% for social, link in SOCIAL_LINK %}
+					<li class="nav-item">
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="{{ link }}" class="pure-button"><i class="fa fa-{{ social|lower }}"></i> {{ social }}</a>
+					</li>
+				{% endfor %}
+
+				{% if FEED_ALL_ATOM %}
+					<li class="nav-item">
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="{{ FEED_ALL_ATOM }}" class="pure-button"><i class="fa fa-rss"></i> Feed</a>
+					</li>
+				{% endif %}
+			</ul>
+			<ul class="nav-list">
+				<li class="nav-item">
+					<form class="pure-form" action="{{ SITEURL }}/search.html" onsubmit="return validateForm(this.elements['q'].value);">
+						<input type="text" placeholder="Search" name="q" id="tipue_search_input" required>
+					</form>
+				</li>
+			</ul>
+		</nav>
+	</header>
+</div>
+
+<div class="pure-u-1">
+	<div class="content">
+		<!-- A wrapper for all the blog posts -->
+		<div class="posts">
+			{% block content_title %}
+			<h1 class="content-subhead">
+				{% block content_title_text %}{% endblock %}
+			</h1>
+			{% endblock %}
+			{% block content %}{% endblock %}			
+		</div>
+
+		{% include 'footer.html' %}
+	</div>
+</div>
+</div>
+
+{% block script %}
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript">
+function validateForm(query) {
+	return (query.length > 0);
+}
+</script>
+{% endblock %}
+
+</body>
+</html>

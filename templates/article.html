@@ -1,0 +1,138 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ article.title }} {%if article.subtitle %} - {{ article.subtitle }} {% endif %} · {{ super() }}
+{% endblock title %}
+
+{% block head_description %}
+{% if article.summary %}
+{{ article.summary|striptags }}
+{% endif %}
+{% endblock head_description %}
+
+{% block meta_tags_in_head %}
+{% if article.tags or article.category or article.keywords %}
+<meta name="keywords" content="{{ [article.tags|join(', '), article.category, article.keywords]|join(', ') }}" />
+{% endif %}
+{% endblock meta_tags_in_head %}
+
+
+{% block content_title %}
+{% endblock %}
+
+
+{% block content %}
+<!-- A single blog post -->
+<section class="post">
+	<header class="post-header">
+		<h2 class="post-title">
+			<a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
+				 title="Permalink to {{ article.title|striptags }}">{{ article.title }}
+				 {% if article.subtitle %} <small> {{ article.subtitle }} </small> {% endif %}
+			</a>
+		</h2>
+	</header>
+	<div class="post-description">
+		{{ article.content }}
+		{% include 'comments.html' %}
+
+		<aside>
+		<hr/>
+		{% for an_article in dates %}
+		{% if an_article.url == article.url %}
+		{% set index = loop.index0 %}
+		{% if not loop.first %}
+		{% set next_article = dates[index-1] %}
+		{% endif %}
+		{% if not loop.last %}
+		{% set previous_article = dates[index+1] %}
+		{% endif %}
+		<nav>
+		<ul class="articles_timeline">
+				{% if previous_article %}
+				{% set ptitle = previous_article.title %}
+				{% set pv_title = ptitle %}
+						{%if previous_article.subtitle %} 
+								{% set pv_title = ptitle + " " + "<small>" + previous_article.subtitle + "</small>" %}
+								{% set ptitle = ptitle + " - " + previous_article.subtitle %}
+						{% endif %} 
+				<li class="previous_article">« <a href="{{ SITEURL }}/{{ previous_article.url }}" title="Previous: {{ ptitle }}">{{ pv_title }}</a></li>
+				{% endif %}
+				{% if next_article %}
+				{% set ntitle = next_article.title %}
+				{% set nv_title = ntitle %}
+						{%if next_article.subtitle %} 
+								{% set nv_title = ntitle + " " + "<small>" + next_article.subtitle + "</small>" %}
+								{% set ntitle = ntitle + " - " + next_article.subtitle %}
+						{% endif %} 
+				<li class="next_article"><a href="{{ SITEURL }}/{{ next_article.url }}" title="Next: {{ ntitle }}">{{ nv_title }}</a> »</li>
+				{% endif %}
+		</ul>
+		</nav>
+		{% endif %}
+		{% endfor %}
+		</aside>
+
+	</div>
+	<div class="article-metadata">
+		{% if article.date %} 
+		<h4>Published</h4>
+		{% set day = article.date.strftime('%d')|int %}
+		<time pubdate="pubdate" datetime="{{ article.date.isoformat() }}">
+			{{ article.date.strftime('%b') }} {{ day }} {{- article.date.strftime(', %Y') }}
+		</time>
+		{% endif %}
+
+		{% if article.modified %} 
+		<h4>Last Updated</h4>
+		<div class="last_updated">{{ article.modified }}</div>
+		{% endif %}
+
+		{% if article.category %}
+		<h4>Category</h4>
+		<a class="pure-button pure-button-primary pure-button-small" href="/categories.html#{{ category|replace(' ', '-')|e }}-ref">{{ article.category }}</a> 
+		{% endif %}
+
+		{% if article.tags %}
+		<h4>Tags</h4>
+		<ul class="list-of-tags tags-in-article"> 
+		{% for tag in article.tags|sort %}
+			<li>
+				<a href="/tags.html#{{ tag|replace(' ', '-')|e }}-ref" class="pure-button">
+					{{ tag }}
+					{% for aTag, tagged_articles in tags if aTag == tag %}
+					<span>{{ tagged_articles|count }}</span>
+					{% endfor %}
+				</a>
+			</li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+	</div>
+</section>
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+{% include 'disqus_script_count.html' %}
+{% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
+<script	language="javascript" type="text/javascript">
+$(function() {
+
+})
+	function uncollapse() {
+		var hash_str = window.location.hash;
+		if (window.location.hash.match(/^#comment-\d+$/)) {
+			var hash_str = '#disqus_thread';
+		}
+		$(hash_str).collapse({
+			toggle: true
+		})
+	}
+</script>
+
+<script type="text/javascript" language="JavaScript">
+	uncollapse(); 
+</script>
+{% endif %}
+{% endblock script %}

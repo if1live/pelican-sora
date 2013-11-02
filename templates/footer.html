@@ -1,0 +1,16 @@
+<footer class="footer">
+<div>
+	<ul class="footer-content">
+		{% if SITESUBTITLE %}
+		<li class="footer-basic">
+			<span class="site-name">{{ SITENAME }}</span> - {{ SITESUBTITLE }}
+		</li>
+		{% endif %}
+		{% if SITE_LICENSE %}
+		<li class="footer-basic">{{ SITE_LICENSE }}</li>
+		{% endif %}
+		<li class="footer-basic">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>
+		<li class="footer-basic">Theme is <a href="http://github.com/if1live/pelican-sora" title="Theme pelican-sora Home Page">pelican-sora</a> by <a href="http://libsora.so" title="libsora.so Home Page">libsora.so</a></li>
+	</ul>
+</div>
+</footer>
