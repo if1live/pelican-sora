@@ -36,7 +36,9 @@ All Tags
 		{% for article in articles %} 
 			<li>
 				<a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }} 
-					{% if article.subtitle %} <small> {{ article.subtitle }} </small> {% endif %}
+					{% if article.subtitle %}
+					<br/><small class="subtitle"> {{ article.subtitle }} </small>
+					{% endif %}
 				</a>
 			</li>
 		{% endfor %}

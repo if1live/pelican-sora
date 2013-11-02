@@ -28,12 +28,15 @@
 		<h2 class="post-title">
 			<a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
 				 title="Permalink to {{ article.title|striptags }}">{{ article.title }}
-				 {% if article.subtitle %} <small> {{ article.subtitle }} </small> {% endif %}
+				 {% if article.subtitle %}
+				 <br/><small class="subtitle"> {{ article.subtitle }} </small>
+				 {% endif %}
 			</a>
 		</h2>
 	</header>
 	<div class="post-description">
 		{{ article.content }}
+
 		{% include 'comments.html' %}
 
 		<aside>
@@ -48,26 +51,27 @@
 		{% set previous_article = dates[index+1] %}
 		{% endif %}
 		<nav>
-		<ul class="articles_timeline">
-				{% if previous_article %}
-				{% set ptitle = previous_article.title %}
-				{% set pv_title = ptitle %}
-						{%if previous_article.subtitle %} 
-								{% set pv_title = ptitle + " " + "<small>" + previous_article.subtitle + "</small>" %}
-								{% set ptitle = ptitle + " - " + previous_article.subtitle %}
-						{% endif %} 
-				<li class="previous_article">« <a href="{{ SITEURL }}/{{ previous_article.url }}" title="Previous: {{ ptitle }}">{{ pv_title }}</a></li>
-				{% endif %}
-				{% if next_article %}
-				{% set ntitle = next_article.title %}
-				{% set nv_title = ntitle %}
-						{%if next_article.subtitle %} 
-								{% set nv_title = ntitle + " " + "<small>" + next_article.subtitle + "</small>" %}
-								{% set ntitle = ntitle + " - " + next_article.subtitle %}
-						{% endif %} 
-				<li class="next_article"><a href="{{ SITEURL }}/{{ next_article.url }}" title="Next: {{ ntitle }}">{{ nv_title }}</a> »</li>
-				{% endif %}
+		<ul class="articles-timeline">
+			{% if previous_article %}
+			{% set ptitle = previous_article.title %}
+			{% set pv_title = ptitle %}
+				{%if previous_article.subtitle %} 
+					{% set pv_title = ptitle + " " + "<br/><small>" + previous_article.subtitle + "</small>" %}
+					{% set ptitle = ptitle + " - " + previous_article.subtitle %}
+				{% endif %} 
+			<li class="previous-article">« <a href="{{ SITEURL }}/{{ previous_article.url }}" title="Previous: {{ ptitle }}">{{ pv_title }}</a></li>
+			{% endif %}
+			{% if next_article %}
+			{% set ntitle = next_article.title %}
+			{% set nv_title = ntitle %}
+				{%if next_article.subtitle %} 
+					{% set nv_title = ntitle + " " + "<br/><small>" + next_article.subtitle + "</small>" %}
+					{% set ntitle = ntitle + " - " + next_article.subtitle %}
+				{% endif %} 
+			<li class="next-article"><a href="{{ SITEURL }}/{{ next_article.url }}" title="Next: {{ ntitle }}">{{ nv_title }}</a> »</li>
+			{% endif %}
 		</ul>
+		<div class="clearfix"></div>
 		</nav>
 		{% endif %}
 		{% endfor %}
@@ -108,31 +112,25 @@
 		{% endfor %}
 		</ul>
 		{% endif %}
+
+		{% if article.related_posts %}
+		<h4>Related Posts</h4>
+    <ul>
+    {% for related_post in article.related_posts %}
+        <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+    {% endfor %}
+    </ul>
+		{% endif %}
 	</div>
 </section>
 {% endblock %}
 
+
 {% block script %}
 {{ super() }}
-{% include 'disqus_script_count.html' %}
-{% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
-<script	language="javascript" type="text/javascript">
+<script type="text/javascript">
 $(function() {
-
+	$('.post table').addClass('pure-table');
 })
-	function uncollapse() {
-		var hash_str = window.location.hash;
-		if (window.location.hash.match(/^#comment-\d+$/)) {
-			var hash_str = '#disqus_thread';
-		}
-		$(hash_str).collapse({
-			toggle: true
-		})
-	}
 </script>
-
-<script type="text/javascript" language="JavaScript">
-	uncollapse(); 
-</script>
-{% endif %}
-{% endblock script %}
+{% endblock %}

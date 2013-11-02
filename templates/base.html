@@ -62,6 +62,14 @@
 
 		<nav class="nav">
 			<ul class="nav-list">
+				{% if DISPLAY_PAGES_ON_MENU %}
+					{% for p in PAGES %}
+					<li{% if p == page %} class="active nav-item" {% else %} class="nav-item" {% endif %}>
+						<a href="{{ SITEURL }}/{{ p.url }}" class="pure-button">{{ p.title }}</a>
+					</li>
+					{% endfor %}
+				{% endif %}
+				
 				<li {% if page_name == "categories" %} class="active nav-item" {% else %} class="nav-item" {% endif %}>
 					<a href="{{ SITEURL }}/categories.html" class="pure-button">Categories</a>
 				</li>
@@ -72,11 +80,6 @@
 					<a href="{{ SITEURL }}/archives.html" class="pure-button">Archives</a>
 				</li>
 				
-				{% if DISPLAY_PAGES_ON_MENU %}
-					{% for p in PAGES %}
-						<li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
-					{% endfor %}
-				{% endif %}
 				{% for social, link in SOCIAL %}
 					<li class="nav-item">
 						<!-- social link icon : http://fontawesome.io/icons/ -->

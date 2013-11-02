@@ -1,6 +1,8 @@
 @import "variable.less";
 @import "mixin.less";
+@import "utility.less";
 
+// pure css helper
 .pure-button-xsmall {
   font-size: 70%;
 }
@@ -26,6 +28,10 @@ a {
   }
 }
 
+// basic attribute
+h1, h2, h3, h4, h5, h6, div, p, a, span, li, time {
+  .basic-font-family();
+}
 
 /* LAYOUT CSS */
 #layout {
@@ -63,9 +69,11 @@ a {
 }
 
 .nav-item {
-  display: inline-block;
-  *display: inline;
-  zoom: 1;
+  @media (max-width: 767px) {
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+  }
 
   form {
     margin-top: 1em;
@@ -83,7 +91,6 @@ a {
       text-decoration: none;
     }
   }
-
   input[type=text] {
     width: 100%;
   }
@@ -100,19 +107,29 @@ a {
   padding: 2em 3em 0;
 }
 
+.recent-posts {
+  .allposts {
+    float: right;
+  }
+}
+
+.subtitle {
+  padding-left: 20px;
+}
+
 .post {
-  padding-bottom: 2em;
+  blockquote {
+    border-left: 5px solid #ddd;
+    padding-left: 1em;
+    margin: 1em 20px;
+  }
 }
 .post-title {
   font-size: 2em;
   color: #222;
   margin-bottom: 0.2em;
 }
-.post-avatar {
-  .rounded-corners(50px);
-  float: right;
-  margin-left: 1em;
-}
+
 .post-description {
   font: ;
   color: #444;
@@ -186,8 +203,17 @@ pre {
   }
 }
 
+.list-of-categories {
+  summary {
+    color: #222;
+    span {
+      vertical-align: super;
+      font-size: 0.8em;
+    }
+  }
+}
+
 h2.tag-title {
-  font-family: 'Trebuchet MS',Trebuchet,'Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,sans-serif;
   font-weight: normal;
 }
 
@@ -196,7 +222,7 @@ ul.tags-in-article {
 }
 
 /* archives */
-ul.list-all-articles {
+ul.list-all-articles, ul.list-articles-category {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -205,14 +231,27 @@ ul.list-all-articles {
     border-bottom:1px dotted black;
     padding:0.3em 0em;
     font-size:1.1em;
-    font-family: 'Trebuchet MS',Trebuchet,'Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,sans-serif;
   }
 
   time {
     float:right;
     color:#AAAAAA;
-    font-family:"PT Sans","Helvetica Neue",Arial,sans-serif;
     font-size: 0.9em;
+  }
+}
+
+.articles-timeline {
+  padding: 0;
+  .previous-article {
+    float: left;
+    text-align: left;
+    small {
+      padding-left: 20px;
+    }
+  }
+  .next-article {
+    float: right;
+    text-align: right;
   }
 }
 
@@ -220,6 +259,9 @@ ul.list-all-articles {
   text-align: center;
   padding: 1em 0;
 
+  ul {
+    padding: 0;
+  }
   li {
     display: inline;
   }
@@ -238,13 +280,6 @@ ul.list-all-articles {
       text-decoration: underline;
     }
   }  
-}
-
-
-
-.footer .pure-menu a:hover,
-.footer .pure-menu a:focus {
-  background: none;
 }
 
 @media (max-width: 767px) {

@@ -14,8 +14,6 @@
 				 title="Permalink to {{ article.title|striptags }}">{{ article.title }}
 			</a>
 		</h2>
-		{% import 'translations.html' as translations with context %}
-		{{ translations.translations_for(article) }}
 
 		<p class="post-meta">
 			<a class="post-category post-category-category" href="{{ SITE_NAME }}/categories.html#{{article.category}}-ref">{{ article.category }}</a>
@@ -34,31 +32,32 @@
 </section>
 
 {% if articles %}
-<div class="row-fluid">
-  <header>
-  	<h1 id="recent-posts">Recent Posts 
-  		<a id="allposts" href="{{ SITEURL }}/archives.html">all posts</a>
-  	</h1>
-  </header>
-  {% for article in articles %}
-  	{% if not RECENT_ARTICLES_COUNT %}
-  		{% set RECENT_ARTICLES_COUNT = 10 %}
-  	{% endif %}
-  	{% if loop.index0 < RECENT_ARTICLES_COUNT %}
-  	<ul class="list-all-articles">
-      <li>
-	      <a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }} 
-	      	{% if article.subtitle %}
-	      		<small> {{ article.subtitle }} </small>
-	      	{% endif %}
-	      </a> 
-	      <time pubdate="pubdate" datetime="{{ article.date.isoformat() }}">
-	      	{{ article.locale_date }}
-	     	</time>
-      </li>
-  	</ul>
-  	{% endif %}
-  {% endfor %}
-</div>
+<header>
+	<h1 class="recent-posts">Recent Posts 
+		<a class="allposts" href="{{ SITEURL }}/archives.html">all posts</a>
+	</h1>
+	<div class="clearfix"></div>
+</header>
+{% for article in articles %}
+	{% if not RECENT_ARTICLES_COUNT %}
+		{% set RECENT_ARTICLES_COUNT = 10 %}
+	{% endif %}
+	{% if loop.index0 < RECENT_ARTICLES_COUNT %}
+	<ul class="list-all-articles">
+		<li>
+			<a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }} 
+				{% if article.subtitle %}
+					<br/><small class="subtitle"> {{ article.subtitle }} </small>
+				{% endif %}
+			</a> 
+			<time pubdate="pubdate" datetime="{{ article.date.isoformat() }}">
+				{{ article.locale_date }}
+		 	</time>
+		 	<div class="clearfix"></div>
+		</li>
+	</ul>
+	{% endif %}
+{% endfor %}
 {% endif %}
+
 {% endblock content %}
