@@ -1,0 +1,273 @@
+@import "variable.less";
+@import "mixin.less";
+
+.pure-button-xsmall {
+  font-size: 70%;
+}
+
+.pure-button-small {
+  font-size: 85%;
+}
+
+.pure-button-large {
+  font-size: 110%;
+}
+
+.pure-button-xlarge {
+  font-size: 125%;
+}
+
+a {
+  color: #0088cc;
+  text-decoration: none;    
+  &:hover, &:focus {
+    color: #005580;
+    text-decoration: underline
+  }
+}
+
+
+/* LAYOUT CSS */
+#layout {
+  padding-left: 25%; /* "left col (nav + list)" width */
+  position: relative;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  margin-left: -25%;
+  background: rgb(24, 33, 61);
+  color: #fff;
+}
+
+.header {
+  margin: 3em 2em 0;
+  text-align: right;
+}
+
+.brand-title, .brand-tagline {
+  margin: 0;
+}
+.brand-tagline {
+  font-weight: 300;
+  color: rgb(142, 142, 214);
+}
+
+.nav-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-item {
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+
+  form {
+    margin-top: 1em;
+  }
+
+  a {
+    background: transparent;
+    border: 3px solid rgb(103, 103, 180);
+    color: #fff;
+    margin-top: 1em;
+
+    &:hover, &:focus {
+      border: 3px solid rgb(142, 142, 214);
+      color: rgb(142, 142, 214);
+      text-decoration: none;
+    }
+  }
+
+  input[type=text] {
+    width: 100%;
+  }
+}
+
+.content-subhead {
+  color: rgb(75, 75, 75);
+  border-bottom: 1px solid #bbb;
+  padding: 0.4em 0;
+  font-weight: 500;
+}
+
+.content {
+  padding: 2em 3em 0;
+}
+
+.post {
+  padding-bottom: 2em;
+}
+.post-title {
+  font-size: 2em;
+  color: #222;
+  margin-bottom: 0.2em;
+}
+.post-avatar {
+  .rounded-corners(50px);
+  float: right;
+  margin-left: 1em;
+}
+.post-description {
+  font: ;
+  color: #444;
+  line-height: 1.8em;
+  .basic-font-family();
+}
+.post-meta {
+  color: #999;
+  font-size: 90%;
+  margin: 0;
+}
+
+.post-category {
+  margin: 0 0.1em;
+  padding: 0.3em 1em;
+  color: #fff;
+  background: #999;
+  font-size: 80%;
+}
+
+.post-category-category {
+  background: #4d85d1;
+}
+.post-category-tag {
+  background: #5aba59;
+}
+
+code, pre {
+  .monospace-font-family();
+  font-size: 12px;
+  .rounded-corners(3px);
+}
+code {
+  padding: 2px 4px;
+  color: #d14;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  white-space: nowrap;
+}
+pre {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  line-height: 20px;
+  background-color: rgb(253,246,227);
+}
+
+/* tags */
+.list-of-tags {
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 20px 0 5px 0;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  li {
+    float: left;
+    margin: 2px;
+  }
+
+  a {
+    padding: 2px 2px 4px 4px;
+    color: #222;
+    text-decoration: none;
+    font-size: 80%;
+    .rounded-corners(3px);
+    span {
+      vertical-align: super;
+      font-size: 0.8em;
+    }
+  }
+}
+
+h2.tag-title {
+  font-family: 'Trebuchet MS',Trebuchet,'Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,sans-serif;
+  font-weight: normal;
+}
+
+ul.tags-in-article {
+  padding: 0;
+}
+
+/* archives */
+ul.list-all-articles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  li {
+    border-bottom:1px dotted black;
+    padding:0.3em 0em;
+    font-size:1.1em;
+    font-family: 'Trebuchet MS',Trebuchet,'Lucida Sans Unicode','Lucida Grande','Lucida Sans',Arial,sans-serif;
+  }
+
+  time {
+    float:right;
+    color:#AAAAAA;
+    font-family:"PT Sans","Helvetica Neue",Arial,sans-serif;
+    font-size: 0.9em;
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 1em 0;
+
+  li {
+    display: inline;
+  }
+
+  a {
+    display: inline;
+    color: #0088cc;
+    font-size: 80%;
+  }
+
+  .footer-basic a {
+    text-decoration: none;
+    
+    &:hover, &:focus {
+      color: #005580;
+      text-decoration: underline;
+    }
+  }  
+}
+
+
+
+.footer .pure-menu a:hover,
+.footer .pure-menu a:focus {
+  background: none;
+}
+
+@media (max-width: 767px) {
+  .sidebar {
+    width: 100%;
+    position: relative;
+    margin: 0;
+  }
+
+  .header {
+    text-align: center;
+    top: auto;
+    margin: 1em auto;
+    position: static;
+  }
+
+  #layout {
+    padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    padding: 0.5em 1em 0;
+  }
+}

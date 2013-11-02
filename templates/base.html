@@ -27,6 +27,7 @@
 
 {% endblock head %}
 
+{% block head_links %}
 <link rel="shortcut icon" href="{{ SITEURL }}/theme/images/favicon.ico" type="image/x-icon" />
 <link rel="apple-touch-icon" href="{{ SITEURL }}/theme/images/apple-touch-icon.png" />
 <link rel="apple-touch-icon" sizes="57x57" href="{{ SITEURL }}/theme/images/apple-touch-icon-57x57.png" />
@@ -35,10 +36,14 @@
 <link rel="apple-touch-icon" sizes="144x144" href="{{ SITEURL }}/theme/images/apple-touch-icon-144x144.png" />
 <link rel="icon" href="{{ SITEURL }}/theme/images/apple-touch-icon-144x144.png" />
 
-<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pure-min.css">
-<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/blog.css">
-<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/code.css">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.1/css/font-awesome.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/pure-min.css">
+{% assets filters="less", output="css/style.css", "css/main.less" %}
+<link rel="stylesheet" href="{{ SITEURL }}/{{ ASSET_URL }}">
+{% endassets %}
+<link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/css/code.css">
+
+{% endblock %}
 
 {% include 'feeds.html' %}
 {% include 'analytics.html' %}
@@ -72,10 +77,17 @@
 						<li{% if p == page %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
 					{% endfor %}
 				{% endif %}
-				{% for social, link in SOCIAL_LINK %}
+				{% for social, link in SOCIAL %}
 					<li class="nav-item">
 						<!-- social link icon : http://fontawesome.io/icons/ -->
 						<a href="{{ link }}" class="pure-button"><i class="fa fa-{{ social|lower }}"></i> {{ social }}</a>
+					</li>
+				{% endfor %}
+
+				{% for name, link in LINKS %}
+					<li class="nav-item">
+						<!-- social link icon : http://fontawesome.io/icons/ -->
+						<a href="{{ link }}" class="pure-button">{{ name }}</a>
 					</li>
 				{% endfor %}
 
@@ -115,7 +127,7 @@
 </div>
 
 {% block script %}
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript">
 function validateForm(query) {
 	return (query.length > 0);

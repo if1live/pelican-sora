@@ -6,7 +6,6 @@ Search · {{ super() }}
 
 {% block head_links %}
 {{ super() }}
-<link href="http://fonts.googleapis.com/css?family=Lato:300,400|Open+Sans:300,400" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/theme/tipuesearch/tipuesearch.css">
 {% endblock head_links %}
 
@@ -15,12 +14,11 @@ Search results for {{ SITENAME|striptags }} blog.
 {% endblock head_description %}
 
 
-{% block content_title_text %}
-Search
+{% block content_title %}
 {% endblock %}
 
 {% block script %}
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script type="text/javascript" src="{{ SITEURL }}/theme/tipuesearch/tipuesearch_set.js"></script>
 <script type="text/javascript" src="{{ SITEURL }}/theme/tipuesearch/tipuesearch.min.js"></script>
 <script>
@@ -46,8 +44,6 @@ $(document).ready(function() {
 
 {% block content %}
 <article>
-	<div class="span12">
-		<div id="tipue_search_content"><div id="tipue_search_loading"></div></div>
-	</div>
+	<div id="tipue_search_content"><div id="tipue_search_loading"></div></div>
 </article>
 {% endblock content %}
