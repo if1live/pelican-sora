@@ -1,21 +1,32 @@
 # pelican-sora
 
-simple theme for Pelican. 
+## What is pelican-sora?
+pelican-sora is a [pelican][pelican] theme
+based on [pelican-elegant][pelican-elegant] theme and [PureCSS][purecss].
 
-## Feature
 * Use LESS, easy to customize
-* Responsive Theme (Based on [PureCSS][purecss])
-* [pelican-elegant][pelican-elegant] based theme. Thanks to [talha131][talha131]
+* Responsive Theme
+* Many same features in [pelican-elegant][pelican-elegant] based theme. Thanks to [talha131][talha131]
   * Support search (Using [Tipue Search][tipue])
   * Live filter for Tags
   * Custom 404 Page
+  * etc...
 
-## Dependency
-* [LESS](http://lesscss.org)
-* pip install BeautifulSoup4
-* pip install webassets
+## Preview
+**[LiveDemo](http://libsora.so)**
 
-## Configure
+![article-desktop](https://raw.github.com/if1live/pelican-sora/master/document/article-desktop.png)
+
+![article-mobile](https://raw.github.com/if1live/pelican-sora/master/document/article-mobile.png)
+
+![index-desktop](https://raw.github.com/if1live/pelican-sora/master/document/index-desktop.png)
+
+![index-mobile](https://raw.github.com/if1live/pelican-sora/master/document/index-mobile.png)
+
+## Variables & Configure
+
+[Look my configure.](https://github.com/if1live/libsora.so/blob/master/pelicanconf.py)
+
 ```python
 DEFAULT_PAGINATION = False
 
@@ -52,6 +63,22 @@ SITE_LICENSE = ''
 RECENT_ARTICLES_COUNT = 10
 ```
 
+## Installation
+### Dependency
+* [LESS](http://lesscss.org)
+* [BeautifulSoup4](https://pypi.python.org/pypi/beautifulsoup4)
+* [webassets](https://pypi.python.org/pypi/webassets)
+
+```
+$ git clone https://github.com/if1live/pelican-sora.git
+$ pelican-themes -s path/to/pelican-sora
+```
+
+```
+THEME = "pelican-sora"
+```
+
+[pelican]: http://blog.getpelican.com/
 [purecss]: http://purecss.io/
 [talha131]: https://github.com/talha131
 [pelican-elegant]: http://oncrashreboot.com/elegant-best-pelican-theme-features
