@@ -26,17 +26,17 @@ a {
   }
 }
 
-.style-link(@color, @hover-color) {
+.pretty-link(@color, @hover-color) {
   color: @color;
-  text-decoration: none;    
+  text-decoration: none;
   &:hover, &:focus {
     color: @hover-color;
     border-bottom: 1px dotted @hover-color;
   }
 }
 
-a.style-link {
-  .style-link(@base-a-tag-color, @base-a-tag-hover-color);
+a.pretty-link {
+  .pretty-link(@base-a-tag-color, @base-a-tag-hover-color); 
 }
 
 // basic attribute
@@ -45,6 +45,7 @@ body,
 .pure-g-r [class *= "pure-u"] {
   /* Set you're content font stack here: */
   .basic-font-family();
+  color: @black;
 }
 
 /* LAYOUT CSS */
@@ -59,31 +60,29 @@ body,
   bottom: 0;
   width: @sidebar-width;
   margin-left: -@sidebar-width;
-  background: @sidebar-bg-color;
+  background: #87cdef;
+  
   color: #fff;
-}
-
-.header {
-  margin-top: 1em;
-}
-
-.sidebar .pure-menu.pure-menu-open {
-  background: transparent;
-  border: 0;
-}
-.sidebar .pure-menu-heading {
-  font-size: 110%;
-  color: #fff; 
 }
 
 .pure-menu.pure-menu-open {
   margin: 0;
   padding: 0;
+  border: 0;
   list-style: none;
-  background: transparent;
+  #gradient > .vertical(#0168b7, #87cdef);
 
-  .pure-menu-heading:hover {
+  .pure-menu-heading {
+    padding-top: 1em;
+    margin-top: 0;
+    font-size: 110%;
+    color: #fff;
+    border: none;
+    font-weight: bold;
     background: transparent;
+    &:hover {
+      background: transparent;
+    }
   }
 
   li {
@@ -97,19 +96,25 @@ body,
   li.pure-menu-selected {
     a {
       color: #fff;
-      background: rgb(142, 142, 214);
+      #gradient > .vertical(#87cdef, #0168b7);
     }
   }
 
   a, form {
-    padding: 0.5em; 
+    padding: 0.5em 0.7em; 
   }
   a {
-    color: #999;
-    border: none;
-    white-space: normal;
+    margin: 1em;
+    border: 1px solid #fff;
+    text-decoration: none;
+    color: #fff;
+    #gradient > .vertical(#008AC8, #72CFF5);
     &:hover, &:focus {
-      background: #777;
+      text-decoration: none;
+      #gradient > .vertical(#87cdef, #0168b7);
+    }
+    @media (max-width: 767px) {
+      margin: 0.5em;
     }
   }
 
@@ -120,20 +125,30 @@ body,
 }
 
 .content-subhead {
-  color: rgb(75, 75, 75);
-  border-bottom: 1px solid #bbb;
+  color: @gray-dark;
+  border-bottom: 1px solid @gray;
   padding: 0.4em 0;
-  font-weight: 500;
+  font-weight: 800;
+
+  a {
+    color: @gray-dark;
+    text-decoration: none;
+    &:hover, &:focus {
+      color: @gray;
+    }
+  }
+  small {
+    font-size: 60%;
+    color: @gray;
+  }
 }
 
 .content {
   padding: 0em 2em 0;
 }
 
-.recent-posts {
-  .allposts {
+.allposts {
     float: right;
-  }
 }
 
 .subtitle {
@@ -149,15 +164,16 @@ body,
 }
 .post-title {
   font-size: 2em;
-  color: #222;
+  color: @gray-darker;
   margin-bottom: 0.2em;
 }
 
 .post-description {
-  font: ;
-  color: #444;
   line-height: 1.8em;
   .basic-font-family();
+  a {
+    .pretty-link(@base-a-tag-color, @base-a-tag-hover-color);
+  }
 }
 .post-meta {
   color: #999;
@@ -247,6 +263,11 @@ ul.tags-in-article {
   padding: 0;
 }
 
+.articles-in-tag {
+  a {
+    .pretty-link(@base-a-tag-color, @base-a-tag-hover-color)
+  }
+}
 /* archives */
 ul.list-all-articles, ul.list-articles-category {
   list-style: none;
@@ -254,7 +275,7 @@ ul.list-all-articles, ul.list-articles-category {
   padding: 0;
 
   a {
-    .style-link(@base-a-tag-color, @base-a-tag-hover-color)
+    .pretty-link(@base-a-tag-color, @base-a-tag-hover-color)
   }
 
   li {
@@ -298,18 +319,9 @@ ul.list-all-articles, ul.list-articles-category {
 
   a {
     display: inline;
-    color: #0088cc;
     font-size: 80%;
+    .pretty-link(@base-a-tag-color, @base-a-tag-hover-color);
   }
-
-  .footer-basic a {
-    text-decoration: none;
-    
-    &:hover, &:focus {
-      color: #005580;
-      text-decoration: underline;
-    }
-  }  
 }
 
 @media (max-width: 767px) {
@@ -322,7 +334,6 @@ ul.list-all-articles, ul.list-articles-category {
   .header {
     text-align: center;
     top: auto;
-    margin: 1em auto;
     position: static;
   }
 

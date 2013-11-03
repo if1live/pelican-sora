@@ -8,8 +8,10 @@
 
 {% block content %}
 <section class="post">
-{{ page.content }}
-{% set article = page %}
-{% include 'comments.html' %}
+	<div class="post-description">
+	{{ page.content }}
+	{% set article = page %}
+	{% include 'comments.html' %}
+	</div>
 </section>
 {% endblock %}

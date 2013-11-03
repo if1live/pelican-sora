@@ -29,7 +29,7 @@ All Tags
 	</ul>
 </div>
 
-<div class="span12">
+<div>
 	{% for tag, articles in tags|sort %}
 	<h2 id="{{ tag|replace(' ', '-')|e }}-ref" class="tag-title">{{ tag }}</h2>
 		<ul class="articles-in-tag">

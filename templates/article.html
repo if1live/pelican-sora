@@ -17,7 +17,13 @@
 {% endblock meta_tags_in_head %}
 
 
-{% block content_title %}
+{% block content_title_text %}
+<a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" class="article-title"
+	title="Permalink to {{ article.title|striptags }}">{{ article.title }}
+	{% if article.subtitle %}
+	<br/><small class="subtitle"> {{ article.subtitle }} </small>
+	{% endif %}
+</a>
 {% endblock %}
 
 
@@ -26,12 +32,7 @@
 <section class="post">
 	<header class="post-header">
 		<h2 class="post-title">
-			<a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-				 title="Permalink to {{ article.title|striptags }}">{{ article.title }}
-				 {% if article.subtitle %}
-				 <br/><small class="subtitle"> {{ article.subtitle }} </small>
-				 {% endif %}
-			</a>
+			
 		</h2>
 	</header>
 	<div class="post-description">
@@ -117,7 +118,7 @@
 		<h4>Related Posts</h4>
     <ul>
     {% for related_post in article.related_posts %}
-        <li><a href="{{ SITEURL }}/{{ related_post.url }}">{{ related_post.title }}</a></li>
+        <li><a href="{{ SITEURL }}/{{ related_post.url }}" class="pretty-link">{{ related_post.title }}</a></li>
     {% endfor %}
     </ul>
 		{% endif %}

@@ -1,43 +1,17 @@
 {% extends "base.html" %}
 
 {% block content_title %}
+<h1 class="content-subhead">
+	Recent Posts 
+	<a class="allposts pretty-link" href="{{ SITEURL }}/archives.html">all posts</a>
+	<div class="clearfix"></div>
+</h1>
 {% endblock %}
+
 
 {% block content %}
 
-<!-- show recent only one article -->
-{% set article = articles[0] %}
-<section class="post">
-	<header class="post-header">
-		<h2 class="post-title">
-			<a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
-				 title="Permalink to {{ article.title|striptags }}">{{ article.title }}
-			</a>
-		</h2>
-
-		<p class="post-meta">
-			<a class="post-category post-category-category" href="{{ SITE_NAME }}/categories.html#{{article.category}}-ref">{{ article.category }}</a>
-			{% for keyword in article.keywords %}
-			<a class="post-category post-category-tag" href="#">{{ keyword }}</a>
-			{% endfor %}
-			{% for tag in article.tags %}
-			<a class="post-category post-category-tag" href="{{ SITE_NAME }}/tags.html#{{tag}}-ref">{{ tag }}</a>
-			{% endfor %}
-			<abbr class="published" title="{{ article.date.isoformat() }}">
-			{{ article.locale_date }}
-			</abbr>
-		</p>
-	</header>
-	<div class="post-description">{{ article.summary }}</div>
-</section>
-
 {% if articles %}
-<header>
-	<h1 class="recent-posts">Recent Posts 
-		<a class="allposts" href="{{ SITEURL }}/archives.html">all posts</a>
-	</h1>
-	<div class="clearfix"></div>
-</header>
 {% for article in articles %}
 	{% if not RECENT_ARTICLES_COUNT %}
 		{% set RECENT_ARTICLES_COUNT = 10 %}
