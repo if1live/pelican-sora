@@ -60,7 +60,7 @@ body,
   bottom: 0;
   width: @sidebar-width;
   margin-left: -@sidebar-width;
-  background: #87cdef;
+  background: @sidebar-bg-color-bottom;
   
   color: #fff;
 }
@@ -70,7 +70,7 @@ body,
   padding: 0;
   border: 0;
   list-style: none;
-  #gradient > .vertical(#0168b7, #87cdef);
+  #gradient > .vertical(@sidebar-bg-color-top, @sidebar-bg-color-bottom);
 
   .pure-menu-heading {
     padding-top: 1em;
@@ -96,7 +96,7 @@ body,
   li.pure-menu-selected {
     a {
       color: #fff;
-      #gradient > .vertical(#87cdef, #0168b7);
+      background-color: @sidebar-btn-hover-color;
     }
   }
 
@@ -105,13 +105,13 @@ body,
   }
   a {
     margin: 1em;
-    border: 1px solid #fff;
+    border: 2px solid #fff;
     text-decoration: none;
     color: #fff;
-    #gradient > .vertical(#008AC8, #72CFF5);
+    background-color: @sidebar-btn-color;
     &:hover, &:focus {
       text-decoration: none;
-      #gradient > .vertical(#87cdef, #0168b7);
+      background-color: @sidebar-btn-hover-color;
     }
     @media (max-width: 767px) {
       margin: 0.5em;
