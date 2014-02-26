@@ -11,8 +11,8 @@
 {% elif TWITTER_CARD_CREATOR: %}
 <meta name="twitter:creator" content="{{ TWITTER_CARD_CREATOR }}">
 {% endif %}
-<meta name="og:title" content="{{ article.title[:70]|e }}">
-<meta name="og:description" content="{{ article.summary|striptags|truncate(200) }}">
+<meta name="twitter:title" content="{{ article.title[:70]|e }}">
+<meta name="twitter:description" content="{{ article.summary|striptags|truncate(200) }}">
 {% if GRAVATAR_URL %}
 <meta name="twitter:image:src" content="{{ GRAVATAR_URL }}">
 {% endif %}
