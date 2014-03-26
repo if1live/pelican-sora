@@ -1,18 +1,25 @@
 <footer class="footer">
-<div>
-	<ul class="footer-content">
-		{% if SITESUBTITLE %}
-		<li class="footer-basic">
-			<span class="site-name">{{ SITENAME }}</span> - {{ SITESUBTITLE }}
-		</li>
-		{% endif %}
-		{% if SITE_LICENSE %}
-		<li class="footer-basic">{{ SITE_LICENSE }}</li>
-		{% endif %}
-		<li class="footer-basic">Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a> and <a href="http://purecss.io/" title="Pure Home Page">Pure</a>.
-		<li class="footer-basic">Theme is <a href="http://github.com/if1live/pelican-sora" title="Theme pelican-sora Home Page">pelican-sora</a> by <a href="http://libsora.so" title="libsora.so Home Page">libsora.so</a></li>.
-		Base Theme: <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a></li>
+  <p>
+    {% if SITESUBTITLE %}
+    <span><span class="site-name">{{ SITENAME }}</span> - {{ SITESUBTITLE }}</span>
+    {% endif %}
 
-	</ul>
-</div>
+    {% if SITE_LICENSE %}
+    <span class="site-name site-license">{{ SITE_LICENSE }}</span>
+    {% endif %}
+  </p>
+
+  <p>
+    Powered by <a href="http://getpelican.com/" title="Pelican Home Page">Pelican</a>
+    / <a href="http://purecss.io/" title="Pure Home Page">Pure</a>
+    {% if DNSEVER_BANNER %}
+    / <a href="http://www.dnsever.com" target="dnsever"><img src="https://kr.dnsever.com/image/dnsever-banner_80x16.gif" border="0" alt="DNS Powered by DNSEver.com"></a>
+    {% endif %}
+  </p>
+
+  <p>
+    Theme is <a href="http://github.com/if1live/pelican-sora" title="Theme pelican-sora Home Page">pelican-sora</a> by <a href="http://libsora.so" title="libsora.so Home Page">libsora.so</a>.
+
+    Base theme is <a href="http://oncrashreboot.com/pelican-elegant" title="Theme Elegant Home Page">Elegant</a> by <a href="http://oncrashreboot.com" title="Talha Mansoor Home Page">Talha Mansoor</a>.
+  </p>
 </footer>
