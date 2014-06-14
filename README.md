@@ -13,7 +13,8 @@ based on [pelican-elegant][pelican-elegant] theme and [PureCSS][purecss].
   * etc...
 
 ## Preview
-**[LiveDemo](http://libsora.so)**
+* [LiveDemo](http://static-blog-sample.libsora.so/)
+* [OxAA.so](http://0xaa.so/)
 
 ![article-desktop](https://raw.github.com/if1live/pelican-sora/master/document/article-desktop.png)
 
@@ -25,7 +26,7 @@ based on [pelican-elegant][pelican-elegant] theme and [PureCSS][purecss].
 
 ## Variables & Configure
 
-[Look my configure.](https://github.com/if1live/libsora.so/blob/master/pelicanconf.py)
+[Look my configure.](https://github.com/static-blog-sample/blog/blob/master/pelicanconf.py)
 
 ```python
 DEFAULT_PAGINATION = False
